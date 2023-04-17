@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,10 +17,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 
 import javax.swing.Action;
 import javax.swing.Box;
@@ -28,6 +35,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -196,6 +204,8 @@ public class QLSVView extends JFrame {
 		label_HoVaTen.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label_HoVaTen.setBounds(3, 350, 65, 19);
 		contentPane.add(label_HoVaTen);
+		
+		table.setRowHeight(30);
 		
 		textField_HoVaTen = new JTextField();
 		textField_HoVaTen.setColumns(10);
@@ -442,7 +452,7 @@ public class QLSVView extends JFrame {
 
 	public void thucHienTim() {
 		// Goi ham huy tim truoc
-		this.thucHienHuyTim();
+		this.thucHienTaiLaiDuLieu();
 		//thuc hien tim kiem
 		int queQuan = this.comboBox_queQuan_timKiem.getSelectedIndex()-1;		
 		String maThiSinhTimKiem = this.textField_MaThiSinh_TimKiem.getText();
@@ -485,7 +495,7 @@ public class QLSVView extends JFrame {
 	}
 	
 
-	public void thucHienHuyTim() {
+	public void thucHienTaiLaiDuLieu() {
 		while(true) {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
 		int soLuongDong = model_table.getRowCount();
@@ -516,5 +526,56 @@ public class QLSVView extends JFrame {
 		if(luaChon==JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
+	}
+
+	public void saveFile(String path) {
+		try {
+			this.model.setTenFile(path);
+			FileOutputStream fos = new FileOutputStream(path);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			for (ThiSinh ts : this.model.getDsThiSinh()) {
+				oos.writeObject(ts);
+			}
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void thucHienSaveFile() {
+		if(this.model.getTenFile().length()>0) {
+			saveFile(this.model.getTenFile());
+		}else {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				saveFile(file.getAbsolutePath());
+			} 
+		}
+	}
+	public void openFile(File file) {
+		ArrayList<ThiSinh> ds = new ArrayList<ThiSinh>();
+		try {
+			this.model.setTenFile(file.getAbsolutePath());
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			ThiSinh ts = null;
+			while((ts = (ThiSinh) ois.readObject())!=null) {
+				ds.add(ts);
+			}
+			ois.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		this.model.setDsThiSinh(ds);
+	}
+	public void thucHienOpenFile() {
+		JFileChooser fc = new JFileChooser();
+		int returnVal = fc.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			openFile(file);
+			thucHienTaiLaiDuLieu();
+		} 
 	}
 }
