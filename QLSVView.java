@@ -44,6 +44,8 @@ import controller.QLSVController;
 
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class QLSVView extends JFrame {
 
@@ -59,8 +61,8 @@ public class QLSVView extends JFrame {
 	public JTextField textField_Mon3;
 	public ButtonGroup btn_gioitinh;
 	public JComboBox comboBox_queQuan;
-	public JRadioButton radioButton_nam;
-	public JRadioButton radioButton_nu;
+	public JRadioButton rdbtnMale;
+	public JRadioButton rdbtnFemale;
 	public JComboBox comboBox_queQuan_timKiem;
 
 	/**
@@ -129,25 +131,25 @@ public class QLSVView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblQuQun = new JLabel("Quê quán");
-		lblQuQun.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblQuQun.setBounds(10, 10, 90, 51);
+		JLabel lblQuQun = new JLabel("Place");
+		lblQuQun.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 20));
+		lblQuQun.setBounds(534, 336, 66, 35);
 		contentPane.add(lblQuQun);
 		
-		JLabel label_maThiSinh = new JLabel("Mã thí sinh");
-		label_maThiSinh.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_maThiSinh.setBounds(242, 18, 90, 35);
-		contentPane.add(label_maThiSinh);
+		JLabel lblId_1 = new JLabel("ID");
+		lblId_1.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 20));
+		lblId_1.setBounds(534, 261, 36, 35);
+		contentPane.add(lblId_1);
 		
 		textField_MaThiSinh_TimKiem = new JTextField();
-		textField_MaThiSinh_TimKiem.setBounds(327, 12, 136, 51);
+		textField_MaThiSinh_TimKiem.setBounds(534, 291, 94, 35);
 		contentPane.add(textField_MaThiSinh_TimKiem);
 		textField_MaThiSinh_TimKiem.setColumns(10);
 		
 		JButton btnTim = new JButton("Tìm");
 		btnTim.addActionListener(action);
-		btnTim.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnTim.setBounds(478, 10, 85, 51);
+		btnTim.setFont(new Font("Viner Hand ITC", Font.BOLD, 18));
+		btnTim.setBounds(639, 277, 72, 35);
 		contentPane.add(btnTim);
 		
 		comboBox_queQuan_timKiem = new JComboBox();
@@ -156,19 +158,21 @@ public class QLSVView extends JFrame {
 	for (Tinh tinh : listTinh) {
 		comboBox_queQuan_timKiem.addItem(tinh.getTenTinh());
 	}
-		comboBox_queQuan_timKiem.setBounds(88, 12, 136, 51);
+		comboBox_queQuan_timKiem.setBounds(534, 372, 94, 35);
 		contentPane.add(comboBox_queQuan_timKiem);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(20, 71, 691, 2);
+		separator_1.setBounds(7, 45, 691, 2);
 		contentPane.add(separator_1);
 		
 		JLabel lblDanhSchTh = new JLabel("Danh sách thí sinh");
-		lblDanhSchTh.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDanhSchTh.setBounds(10, 80, 194, 51);
+		lblDanhSchTh.setForeground(new Color(128, 128, 0));
+		lblDanhSchTh.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblDanhSchTh.setBounds(10, 47, 194, 28);
 		contentPane.add(lblDanhSchTh);
 		
 		table = new JTable();
+		table.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -178,44 +182,45 @@ public class QLSVView extends JFrame {
 		));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 127, 691, 163);
+		scrollPane.setBounds(5, 77, 691, 163);
 		contentPane.add(scrollPane);
 		
 		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBounds(3, 300, 691, 2);
+		separator_1_1.setBounds(4, 243, 691, 2);
 		contentPane.add(separator_1_1);
 		
-		JLabel lblThngT = new JLabel("Thông tin thí sinh");
-		lblThngT.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblThngT.setBounds(10, 305, 172, 26);
+		JLabel lblThngT = new JLabel("Student Information");
+		lblThngT.setForeground(new Color(0, 0, 255));
+		lblThngT.setFont(new Font("Tempus Sans ITC", Font.BOLD, 20));
+		lblThngT.setBounds(213, 245, 214, 26);
 		contentPane.add(lblThngT);
 		
-		JLabel label_ID = new JLabel("Mã thí sinh");
-		label_ID.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_ID.setBounds(1, 328, 74, 19);
-		contentPane.add(label_ID);
+		JLabel lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblId.setBounds(49, 277, 36, 19);
+		contentPane.add(lblId);
 		
 		textField_ID = new JTextField();
 		textField_ID.setColumns(10);
-		textField_ID.setBounds(74, 330, 96, 19);
+		textField_ID.setBounds(101, 277, 96, 19);
 		contentPane.add(textField_ID);
 		
-		JLabel label_HoVaTen = new JLabel("Họ và tên");
-		label_HoVaTen.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_HoVaTen.setBounds(3, 350, 65, 19);
-		contentPane.add(label_HoVaTen);
+		JLabel lblFullName = new JLabel("Full name");
+		lblFullName.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblFullName.setBounds(17, 301, 97, 19);
+		contentPane.add(lblFullName);
 		
 		table.setRowHeight(30);
 		
 		textField_HoVaTen = new JTextField();
 		textField_HoVaTen.setColumns(10);
-		textField_HoVaTen.setBounds(74, 352, 96, 19);
+		textField_HoVaTen.setBounds(101, 302, 96, 19);
 		contentPane.add(textField_HoVaTen);
 		
-		JLabel label_HoVaTen_1 = new JLabel("Quê quán");
-		label_HoVaTen_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_HoVaTen_1.setBounds(3, 379, 66, 19);
-		contentPane.add(label_HoVaTen_1);
+		JLabel lblPlaceOfBirth = new JLabel("Place ");
+		lblPlaceOfBirth.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPlaceOfBirth.setBounds(38, 346, 50, 26);
+		contentPane.add(lblPlaceOfBirth);
 		
 		comboBox_queQuan = new JComboBox();
 			comboBox_queQuan.addItem("");
@@ -223,96 +228,101 @@ public class QLSVView extends JFrame {
 			comboBox_queQuan.addItem(tinh.getTenTinh());
 		}
 		
-		comboBox_queQuan.setBounds(76, 380, 94, 21);
+		comboBox_queQuan.setBounds(102, 349, 94, 21);
 		contentPane.add(comboBox_queQuan);
 		
-		JLabel label_NgaySinh = new JLabel("Ngày sinh");
-		label_NgaySinh.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_NgaySinh.setBounds(2, 408, 66, 19);
-		contentPane.add(label_NgaySinh);
+		JLabel lblDateOfBirth = new JLabel("Date of birth");
+		lblDateOfBirth.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblDateOfBirth.setBounds(1, 328, 98, 19);
+		contentPane.add(lblDateOfBirth);
 		
 		textField_NgaySinh = new JTextField();
-		textField_NgaySinh.setBounds(74, 411, 96, 19);
+		textField_NgaySinh.setBounds(101, 326, 96, 19);
 		contentPane.add(textField_NgaySinh);
 		textField_NgaySinh.setColumns(10);
 		
-		JLabel label_ID_1 = new JLabel("Giới tính");
-		label_ID_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_ID_1.setBounds(232, 312, 74, 19);
-		contentPane.add(label_ID_1);
+		JLabel lblGender = new JLabel("Gender");
+		lblGender.setForeground(new Color(0, 128, 0));
+		lblGender.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblGender.setBounds(210, 292, 74, 19);
+		contentPane.add(lblGender);
 		
-		radioButton_nam = new JRadioButton("Nam");
-		radioButton_nam.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		radioButton_nam.setBounds(327, 327, 103, 21);
-		contentPane.add(radioButton_nam);
+		rdbtnMale = new JRadioButton("Male");
+		rdbtnMale.setForeground(new Color(0, 0, 255));
+		rdbtnMale.setFont(new Font("Tahoma", Font.BOLD, 15));
+		rdbtnMale.setBounds(202, 318, 103, 21);
+		contentPane.add(rdbtnMale);
 		
-		radioButton_nu = new JRadioButton("Nữ");
-		radioButton_nu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		radioButton_nu.setBounds(449, 327, 103, 21);
-		contentPane.add(radioButton_nu);
+		rdbtnFemale = new JRadioButton("Female");
+		rdbtnFemale.setForeground(new Color(255, 0, 128));
+		rdbtnFemale.setFont(new Font("Tahoma", Font.BOLD, 15));
+		rdbtnFemale.setBounds(202, 341, 103, 21);
+		contentPane.add(rdbtnFemale);
 		
 		btn_gioitinh = new ButtonGroup();
-		btn_gioitinh.add(radioButton_nam);
-		btn_gioitinh.add(radioButton_nu);
+		btn_gioitinh.add(rdbtnMale);
+		btn_gioitinh.add(rdbtnFemale);
 		
 		JLabel lblJava = new JLabel("Java");
-		lblJava.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblJava.setBounds(242, 350, 66, 19);
+		lblJava.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblJava.setBounds(9, 399, 66, 19);
 		contentPane.add(lblJava);
 		
 		JLabel lblSecurity = new JLabel("Security");
-		lblSecurity.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSecurity.setBounds(240, 379, 66, 19);
+		lblSecurity.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSecurity.setBounds(355, 399, 66, 19);
 		contentPane.add(lblSecurity);
 		
 		JLabel lblVovinam = new JLabel("Vovinam 3");
-		lblVovinam.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblVovinam.setBounds(240, 408, 77, 19);
+		lblVovinam.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblVovinam.setBounds(171, 399, 92, 19);
 		contentPane.add(lblVovinam);
 		
 		textField_Mon1 = new JTextField();
 		textField_Mon1.setColumns(10);
-		textField_Mon1.setBounds(327, 352, 96, 19);
+		textField_Mon1.setBounds(60, 400, 96, 19);
 		contentPane.add(textField_Mon1);
 		
 		textField_Mon2 = new JTextField();
 		textField_Mon2.setColumns(10);
-		textField_Mon2.setBounds(327, 381, 96, 19);
+		textField_Mon2.setBounds(421, 399, 96, 19);
 		contentPane.add(textField_Mon2);
 		
 		textField_Mon3 = new JTextField();
 		textField_Mon3.setColumns(10);
-		textField_Mon3.setBounds(327, 410, 96, 19);
+		textField_Mon3.setBounds(254, 398, 96, 19);
 		contentPane.add(textField_Mon3);
 		
 		JButton btnThem = new JButton("Thêm");
 		btnThem.addActionListener(action);
-		btnThem.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnThem.setBounds(10, 453, 80, 26);
+		btnThem.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnThem.setBounds(10, 453, 96, 26);
 		contentPane.add(btnThem);
 		
 		JButton btnXoa = new JButton("Xóa");
+		btnXoa.setForeground(new Color(255, 0, 0));
 		btnXoa.addActionListener(action);
-		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnXoa.setBounds(131, 453, 80, 26);
 		contentPane.add(btnXoa);
 		
 		JButton btnCapNhap = new JButton("Cập Nhật");
 		btnCapNhap.addActionListener(action);
-		btnCapNhap.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCapNhap.setBounds(258, 453, 96, 26);
+		btnCapNhap.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnCapNhap.setBounds(271, 453, 159, 26);
 		contentPane.add(btnCapNhap);
 		
 		JButton btnLuu = new JButton("Lưu");
 		btnLuu.addActionListener(action);
-		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnLuu.setBounds(407, 453, 80, 26);
+		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnLuu.setBounds(472, 453, 80, 26);
 		contentPane.add(btnLuu);
 		
 		JButton btnHuyBo = new JButton("Hủy bỏ");
+		btnHuyBo.setForeground(new Color(255, 0, 0));
 		btnHuyBo.addActionListener(action);
-		btnHuyBo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnHuyBo.setBounds(539, 453, 103, 26);
+		btnHuyBo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnHuyBo.setBounds(573, 453, 103, 26);
 		contentPane.add(btnHuyBo);
 		
 		JSeparator separator_1_2 = new JSeparator();
@@ -320,10 +330,22 @@ public class QLSVView extends JFrame {
 		contentPane.add(separator_1_2);
 		
 		JButton btnHuyTim = new JButton("Hủy");
+		btnHuyTim.setForeground(new Color(255, 0, 0));
 		btnHuyTim.addActionListener(action);
-		btnHuyTim.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnHuyTim.setBounds(591, 10, 85, 51);
+		btnHuyTim.setFont(new Font("Source Sans Pro", Font.BOLD, 18));
+		btnHuyTim.setBounds(639, 345, 72, 35);
 		contentPane.add(btnHuyTim);
+		
+		JLabel lblNewLabel = new JLabel("Student Score Management");
+		lblNewLabel.setFont(new Font("Vivaldi", Font.BOLD, 29));
+		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setBounds(194, 0, 354, 33);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("subject score:");
+		lblNewLabel_1.setFont(new Font("Source Sans Pro", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(7, 377, 159, 19);
+		contentPane.add(lblNewLabel_1);
 		
 		
 		this.setVisible(true);
@@ -408,9 +430,9 @@ public class QLSVView extends JFrame {
 				+ (ts.getNgaySinh().getYear() + 1900);
 		this.textField_NgaySinh.setText(s_ngaySinh+"");
 		if(ts.isGioiTinh()) {
-			radioButton_nam.setSelected(true);
+			rdbtnMale.setSelected(true);
 		}else {
-			radioButton_nu.setSelected(true);
+			rdbtnFemale.setSelected(true);
 		}
 		this.textField_Mon1.setText(ts.getDiemMon1()+"");
 		this.textField_Mon2.setText(ts.getDiemMon2()+"");
@@ -436,9 +458,9 @@ public class QLSVView extends JFrame {
 		Tinh tinh = Tinh.getTinhById(queQuan);
 		Date ngaySinh = new Date(this.textField_NgaySinh.getText());				 
 		boolean gioiTinh = true;					
-		if(this.radioButton_nam.isSelected()) {
+		if(this.rdbtnMale.isSelected()) {
 			gioiTinh = true;
-		}else if(this.radioButton_nu.isSelected()) {
+		}else if(this.rdbtnFemale.isSelected()) {
 			gioiTinh = false;
 		}
 		float diemMon1 = Float.valueOf(this.textField_Mon1.getText());
