@@ -31,12 +31,20 @@ public class QLSVController implements Action {
 			this.view.thucHienThemThiSinh();
 				
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ các thông tin trước khi nhấn lưu!");
 			}
 		}else if(cm.equals("Cập Nhật")) {
+			try {
 			this.view.hienThiThongTinThiSinhDaChon();
+			}catch(Exception e2) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn mục mà bạn muốn cập nhật!");
+			}
 		}else if(cm.equals("Xóa")) {
+			try {
 			this.view.thucHienXoa();
+			}catch(Exception e2) {
+				JOptionPane.showMessageDialog(null, "Hãy chọn mục mà bạn muốn xóa!");
+			}
 		}else if(cm.equals("Hủy bỏ")) {
 			this.view.xoaForm();
 		}else if(cm.equals("Tìm")) {
